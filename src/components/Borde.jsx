@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Borde = ({ borde, handleBorde }) => {
+export default function Borde({ borde, handleClick }) {
   const X = (
     <div className="x">
       <div className="x2 blue-glow"></div>
@@ -8,11 +8,7 @@ const Borde = ({ borde, handleBorde }) => {
     </div>
   );
   const O = <div className="o red-glow"></div>;
-  //handle box click
-  const handleClick = (e) => {
-    const index = e.target.getAttribute("index");
-    handleBorde(index);
-  };
+
   return (
     <div className="grid-borde">
       <div className="h-line-1 line"></div>
@@ -29,10 +25,9 @@ const Borde = ({ borde, handleBorde }) => {
           }}
         >
           {box === "o" ? O : ""}
+          {box === "x" ? X : ""}
         </div>
       ))}
     </div>
   );
-};
-
-export default Borde;
+}
