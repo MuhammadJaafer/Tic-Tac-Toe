@@ -57,7 +57,7 @@ function App() {
     } else {
     }
     setCanClick(false);
-    await delay(2500);
+    await delay(1500);
     setCanClick(true);
     setBorde(initBorde);
     setTurn("player1");
