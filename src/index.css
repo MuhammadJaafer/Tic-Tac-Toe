@@ -63,14 +63,18 @@ h1 {
 }
 
 .win {
-  animation: winner 1.5s;
+  animation: winner 2s;
 }
 @keyframes winner {
   0% {
     transform: scale(1);
   }
-  50% {
+
+  35% {
     transform: scale(1.5);
+  }
+  80% {
+    transform: scale(0.9);
   }
   100% {
     transform: scale(1);
