@@ -23,7 +23,7 @@ body {
     0 0 20px #ff3f3f, 0 0 25px #ff3f3f, 0 0 30px #ff3f3f;
   /* -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: #ff3f3f; */
-  color: #ff9494;
+  color: #ff7777;
 }
 .blue-glow {
   box-shadow: 0 0 1px #fff, 0 0 5px #fff, 0 0 8px #0073e6, 0 0 10px #0073e6,
@@ -112,14 +112,19 @@ h1 {
   padding-top: 0.5rem;
   font-size: 3rem;
 }
-
+.player1-score {
+  font-size: 3rem;
+}
+.player2-score {
+  font-size: 3rem;
+}
 .o {
   width: 65%;
   height: 65%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 0.5rem solid rgb(255, 190, 190);
+  border: 0.5rem solid rgb(255, 92, 92);
   position: absolute;
   border-radius: 100%;
 }
