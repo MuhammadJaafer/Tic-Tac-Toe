@@ -28,7 +28,7 @@ function App() {
         borde[line[1]] === "x" &&
         borde[line[2]] === "x"
       ) {
-        setWin("x");
+        setWin("xWin");
         setWinLine(line);
       }
       if (
@@ -36,7 +36,7 @@ function App() {
         borde[line[1]] === "o" &&
         borde[line[2]] === "o"
       ) {
-        setWin("o");
+        setWin("oWin");
         setWinLine(line);
       }
     });
@@ -50,17 +50,14 @@ function App() {
 
   //restart game
   const RestartGame = async () => {
-    if (win === "x") {
+    if (win === "xWin") {
       setPlayer1Score((prev) => prev + 1);
-      console.log(winLine, "X");
-    } else if (win === "o") {
+    } else if (win === "oWin") {
       setPlayer2Score((prev) => prev + 1);
-      console.log(winLine, "O");
     } else {
-      console.log("Drow");
     }
     setCanClick(false);
-    await delay(1000);
+    await delay(1500);
     setCanClick(true);
     setBorde(initBorde);
     setTurn("player1");
@@ -103,7 +100,12 @@ function App() {
         <span className="red-text-glow">Tac </span>
         <span className="blue-text-glow">Toe </span>
       </h1>
-      <Borde borde={borde} handleClick={handleClick} />
+      <Borde
+        borde={borde}
+        handleClick={handleClick}
+        win={win}
+        winLine={winLine}
+      />
       <div className="score">
         <div className="player-score">
           <div>Player 1</div>

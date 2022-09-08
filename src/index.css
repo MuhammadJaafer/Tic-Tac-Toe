@@ -57,8 +57,24 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }
+
 .box {
   position: relative;
+}
+
+.win {
+  animation: winner 1.5s;
+}
+@keyframes winner {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 .line {
   height: 100%;
