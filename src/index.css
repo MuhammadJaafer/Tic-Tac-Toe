@@ -153,3 +153,21 @@ h1 {
 .x2 {
   transform: rotateZ(-135deg);
 }
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 5rem;
+  }
+  .grid-borde {
+    width: 30rem;
+    height: 30rem;
+  }
+  .score {
+    width: 30rem;
+    height: 10rem;
+    font-size: 2.2rem;
+  }
+  .text-score {
+    font-size: 2.5rem;
+  }
+}

@@ -9,10 +9,10 @@ function App() {
   const [click, setclick] = useState(0);
   const [win, setWin] = useState(null);
   const [winLine, setWinLine] = useState(null);
-
+  const [canClick, setCanClick] = useState(true);
   //check if some one win
   const Check = () => {
-    const win = [
+    const winLines = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -22,7 +22,7 @@ function App() {
       [2, 4, 6],
       [0, 4, 8],
     ];
-    win.map((line) => {
+    winLines.map((line) => {
       if (
         borde[line[0]] === "x" &&
         borde[line[1]] === "x" &&
@@ -40,6 +40,9 @@ function App() {
         setWinLine(line);
       }
     });
+    if (click === 9 && !win) {
+      setWin("draw");
+    }
   };
 
   //delay function
@@ -48,13 +51,17 @@ function App() {
   //restart game
   const RestartGame = async () => {
     if (win === "x") {
+      setPlayer1Score((prev) => prev + 1);
       console.log(winLine, "X");
     } else if (win === "o") {
+      setPlayer2Score((prev) => prev + 1);
       console.log(winLine, "O");
     } else {
       console.log("Drow");
     }
+    setCanClick(false);
     await delay(1000);
+    setCanClick(true);
     setBorde(initBorde);
     setTurn("player1");
     setclick(0);
@@ -64,9 +71,10 @@ function App() {
 
   // handle Clicks on the borde
   const handleClick = (e) => {
+    if (!canClick) return;
     const index = e.target.getAttribute("index");
 
-    if (borde[index] != "" || click >= 9) {
+    if (borde[index] != "") {
       console.log("already taken");
       return;
     }
@@ -85,12 +93,7 @@ function App() {
 
   useEffect(() => {
     Check();
-    if (win) {
-      win === "x"
-        ? setPlayer1Score(player1Score + 1)
-        : setPlayer2Score(player2Score + 1);
-      RestartGame();
-    } else if (click >= 9) RestartGame();
+    if (win) RestartGame();
   }, [win, click]);
 
   return (
