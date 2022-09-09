@@ -10,6 +10,7 @@ function App() {
   const [win, setWin] = useState(null);
   const [winLine, setWinLine] = useState(null);
   const [canClick, setCanClick] = useState(true);
+  const [first, setFirst] = useState("x");
   //check if some one win
   const Check = () => {
     const winLines = [
@@ -60,10 +61,13 @@ function App() {
     await delay(1500);
     setCanClick(true);
     setBorde(initBorde);
-    setTurn("player1");
     setclick(0);
     setWin(null);
     setWinLine(null);
+    setFirst((prev) => {
+      if (prev === "x") return "o";
+      else return "x";
+    });
   };
 
   // handle Clicks on the borde
@@ -79,6 +83,7 @@ function App() {
     setclick(click + 1);
 
     const newBorde = [...borde];
+
     newBorde[index] = turn === "player1" ? "x" : "o";
     setBorde(newBorde);
 
@@ -93,6 +98,7 @@ function App() {
     if (win) RestartGame();
   }, [win, click]);
 
+  console.log(turn);
   return (
     <div className="App">
       <h1>
@@ -108,12 +114,16 @@ function App() {
       />
       <div className="score">
         <div className="player-score">
-          <div>Player 1</div>
+          <div className={`${turn === "player1" ? "blue-text-glow" : ""}`}>
+            Player 1
+          </div>
           <div className="player1-score blue-text-glow">{player1Score}</div>
         </div>
         <div className="text-score">Score</div>
         <div className="player-score">
-          <div>Player 2</div>
+          <div className={`${turn === "player2" ? "red-text-glow" : ""}`}>
+            Player 2
+          </div>
           <div className="player2-score red-text-glow">{player2Score}</div>
         </div>
       </div>

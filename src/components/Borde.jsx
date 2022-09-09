@@ -8,9 +8,6 @@ export default function Borde({ borde, handleClick, win, winLine }) {
     </div>
   );
   const O = () => <div className="o red-glow"></div>;
-  useEffect(() => {
-    console.log(win, winLine);
-  }, [win, winLine]);
   return (
     <div className="grid-borde">
       <div className="h-line-1 line"></div>
