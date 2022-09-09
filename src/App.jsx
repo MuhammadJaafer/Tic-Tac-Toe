@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import Borde from "./components/Borde";
+import xsound from "./assets/xsound.ogg";
+import osound from "./assets/osound.ogg";
+import winSound from "./assets/winSound.mp3";
+import tieSound from "./assets/tieSound.mp3";
 const initBorde = ["", "", "", "", "", "", "", "", ""];
 function App() {
+  const Xsound = new Audio(xsound);
+  const Osound = new Audio(osound);
+  const WinSound = new Audio(winSound);
+  const TieSound = new Audio(tieSound);
   const [borde, setBorde] = useState(initBorde);
   const [turn, setTurn] = useState("player1");
   const [player1Score, setPlayer1Score] = useState(0);
@@ -53,9 +61,14 @@ function App() {
   const RestartGame = async () => {
     if (win === "xWin") {
       setPlayer1Score((prev) => prev + 1);
+
+      WinSound.play();
     } else if (win === "oWin") {
       setPlayer2Score((prev) => prev + 1);
+
+      WinSound.play();
     } else {
+      TieSound.play();
     }
     setCanClick(false);
     await delay(1500);
@@ -79,7 +92,11 @@ function App() {
       console.log("already taken");
       return;
     }
-
+    if (turn === "player1") {
+      Xsound.play();
+    } else {
+      Osound.play();
+    }
     setclick(click + 1);
 
     const newBorde = [...borde];
